@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon.svg" alt="Bastion logo" width="80" />
+  <img src="icon.png" alt="Bastion logo" width="80" />
 </p>
 
 <h1 align="center">Bastion</h1>
@@ -100,19 +100,6 @@ bankist/
 2. Open `index.html` in your browser, or use a local server such as the **Live Server** extension in VS Code.
 3. Log in with one of the demo accounts above.
 
-## Roadmap
-
-- [x] Redesigned, responsive UI
-- [ ] Login and display UI
-- [ ] Calculate and display balance and summary
-- [ ] Display movements
-- [ ] Transfer money
-- [ ] Request loan
-- [ ] Sort movements
-- [ ] Close account
-- [ ] Logout timer
-- [ ] Dates and internationalization (`Intl` API)
-
 ## License
 
-For educational use only. The original project concept belongs to Jonas Schmedtmann.
+For educational use only. 
