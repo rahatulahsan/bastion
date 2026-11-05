@@ -130,7 +130,9 @@ nav {
   color: var(--lime);
   font-size: 2rem;
   cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    background 0.2s;
 }
 
 .login__btn:hover,
@@ -153,7 +155,7 @@ nav {
   gap: 2.4rem;
 
   /* NOTE This creates the fade in/out animation */
-  opacity: 0;
+  /*opacity: 0;*/
   transition: all 1s;
 }
 
@@ -173,8 +175,16 @@ nav {
   color: #fff;
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(60rem 30rem at 100% 0%, rgba(198, 244, 50, 0.16), transparent 60%),
-    radial-gradient(40rem 30rem at 0% 120%, rgba(90, 120, 255, 0.25), transparent 60%),
+    radial-gradient(
+      60rem 30rem at 100% 0%,
+      rgba(198, 244, 50, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      40rem 30rem at 0% 120%,
+      rgba(90, 120, 255, 0.25),
+      transparent 60%
+    ),
     var(--ink);
 }
 
@@ -303,9 +313,15 @@ nav {
   background: currentColor;
 }
 
-.summary__item--in .summary__label::before { background: #6fe3a5; }
-.summary__item--out .summary__label::before { background: #ff8a8f; }
-.summary__item--interest .summary__label::before { background: var(--lime); }
+.summary__item--in .summary__label::before {
+  background: #6fe3a5;
+}
+.summary__item--out .summary__label::before {
+  background: #ff8a8f;
+}
+.summary__item--interest .summary__label::before {
+  background: var(--lime);
+}
 
 .summary__value {
   margin-top: 0.6rem;
@@ -315,9 +331,15 @@ nav {
   font-variant-numeric: tabular-nums;
 }
 
-.summary__value--in { color: #6fe3a5; }
-.summary__value--out { color: #ff8a8f; }
-.summary__value--interest { color: var(--lime); }
+.summary__value--in {
+  color: #6fe3a5;
+}
+.summary__value--out {
+  color: #ff8a8f;
+}
+.summary__value--interest {
+  color: var(--lime);
+}
 
 /* ============ MOVEMENTS ============ */
 .activity {
@@ -483,9 +505,18 @@ h2 {
   height: 2rem;
 }
 
-.operation--transfer .operation__icon { background: var(--blue-soft); color: var(--ink); }
-.operation--loan .operation__icon { background: var(--green-soft); color: var(--green); }
-.operation--close .operation__icon { background: var(--red-soft); color: var(--red); }
+.operation--transfer .operation__icon {
+  background: var(--blue-soft);
+  color: var(--ink);
+}
+.operation--loan .operation__icon {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.operation--close .operation__icon {
+  background: var(--red-soft);
+  color: var(--red);
+}
 
 .operation__hint {
   font-size: 1.25rem;
@@ -567,12 +598,23 @@ h2 {
   border-radius: 1.2rem;
   font-size: 1.9rem;
   cursor: pointer;
-  transition: transform 0.2s, filter 0.2s;
+  transition:
+    transform 0.2s,
+    filter 0.2s;
 }
 
-.form__btn--transfer { background: var(--ink); color: var(--lime); }
-.form__btn--loan { background: var(--green); color: #fff; }
-.form__btn--close { background: var(--red); color: #fff; }
+.form__btn--transfer {
+  background: var(--ink);
+  color: var(--lime);
+}
+.form__btn--loan {
+  background: var(--green);
+  color: #fff;
+}
+.form__btn--close {
+  background: var(--red);
+  color: #fff;
+}
 
 .form__btn:hover,
 .form__btn:focus {
