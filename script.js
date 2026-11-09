@@ -87,7 +87,7 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+//displayMovements(account1.movements);
 
 // Showing Balance of the account owner
 const calcDisplayBalance = function (movements) {
@@ -96,30 +96,30 @@ const calcDisplayBalance = function (movements) {
   }, 0);
   labelBalance.textContent = `${balance} €`;
 };
-calcDisplayBalance(account1.movements);
+//calcDisplayBalance(account1.movements);
 
 // Display balance summary
-const calDisplaySummary = function (movements) {
-  const income = movements
+const calDisplaySummary = function (acc) {
+  const income = acc.movements
     .filter(function (mov) {
       return mov > 0;
     })
     .reduce(function (acc, mov) {
       return acc + mov;
     }, 0);
-  const out = movements
+  const out = acc.movements
     .filter(function (mov) {
       return mov < 0;
     })
     .reduce(function (acc, mov) {
       return acc + mov;
     }, 0);
-  const interest = movements
+  const interest = acc.movements
     .filter(function (mov) {
       return mov > 0;
     })
     .map(function (deposit) {
-      return (deposit * 1.2) / 100;
+      return (deposit * acc.interestRate) / 100;
     })
     .filter(function (int, i, arr) {
       //console.log(arr);
@@ -132,7 +132,7 @@ const calDisplaySummary = function (movements) {
   labelSumIn.textContent = `${income} €`;
   labelSumOut.textContent = `${Math.abs(out)} €`;
 };
-calDisplaySummary(account1.movements);
+//calDisplaySummary(account1.movements);
 
 // Creating username and adding in accounts
 const createUsername = function (accounts) {
@@ -147,8 +147,32 @@ const createUsername = function (accounts) {
   });
 };
 createUsername(accounts);
-//console.log(accounts);
 
+// Event handler for login
+let currentAccount;
+btnLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+  currentAccount = accounts.find(
+    (acc) => acc.username === inputLoginUsername.value,
+  );
+  console.log(currentAccount);
+  if (currentAccount && currentAccount.pin === Number(inputLoginPin.value)) {
+    // Diplay UI and message
+    labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(" ")[0]}`;
+    containerApp.style.opacity = 100;
+
+    // clear input fields
+    inputLoginUsername.value = "";
+    inputLoginPin.value = "";
+    inputLoginPin.blur();
+    // Display movements
+    displayMovements(currentAccount.movements);
+    // Display balance
+    calcDisplayBalance(currentAccount.movements);
+    // Display summary
+    calDisplaySummary(currentAccount);
+  }
+});
 /*
 const deposit = movements.filter(function(mov){
   return mov > 0;
@@ -220,4 +244,16 @@ const usdMovements = movements
   }, 0);
 
 console.log(usdMovements);
+*/
+
+/*
+const firstWithdrawl = movements.find(function (mov) {
+  return mov < 0;
+});
+console.log(movements);
+console.log(firstWithdrawl);
+
+console.log(accounts);
+const account = accounts.find((acc) => acc.owner === "Rahatul Ahsan");
+console.log(account);
 */
