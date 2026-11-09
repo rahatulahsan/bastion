@@ -81,7 +81,7 @@ const displayMovements = function (movements) {
     const html = `<div class="movements__row">
             <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
             
-            <div class="movements__value">${mov}</div>
+            <div class="movements__value">${mov} €</div>
           </div>`;
     containerMovements.insertAdjacentHTML("afterbegin", html);
   });
@@ -90,32 +90,66 @@ const displayMovements = function (movements) {
 displayMovements(account1.movements);
 
 // Showing Balance of the account owner
-const calcDisplayBalance = function(movements){
-  const balance = movements.reduce(function(acc, curr){
+const calcDisplayBalance = function (movements) {
+  const balance = movements.reduce(function (acc, curr) {
     return acc + curr;
   }, 0);
-  labelBalance.textContent = `${balance} EUR`;
-  
-}
+  labelBalance.textContent = `${balance} €`;
+};
 calcDisplayBalance(account1.movements);
 
-// Creating username and adding in accounts
-const createUsername = function(accounts){
+// Display balance summary
+const calDisplaySummary = function (movements) {
+  const income = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  const out = movements
+    .filter(function (mov) {
+      return mov < 0;
+    })
+    .reduce(function (acc, mov) {
+      return acc + mov;
+    }, 0);
+  const interest = movements
+    .filter(function (mov) {
+      return mov > 0;
+    })
+    .map(function (deposit) {
+      return (deposit * 1.2) / 100;
+    })
+    .filter(function (int, i, arr) {
+      //console.log(arr);
+      return int >= 1;
+    })
+    .reduce(function (acc, int) {
+      return acc + int;
+    }, 0);
+  labelSumInterest.textContent = `${interest} €`;
+  labelSumIn.textContent = `${income} €`;
+  labelSumOut.textContent = `${Math.abs(out)} €`;
+};
+calDisplaySummary(account1.movements);
 
-  accounts.forEach(function(acc){
-    acc.username = acc.owner.toLowerCase().split(" ").map(function(n){
-      return n[0];
-    }).join('');
-  })
-}
+// Creating username and adding in accounts
+const createUsername = function (accounts) {
+  accounts.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(" ")
+      .map(function (n) {
+        return n[0];
+      })
+      .join("");
+  });
+};
 createUsername(accounts);
 //console.log(accounts);
 
-
-
-
-
-
+/*
 const deposit = movements.filter(function(mov){
   return mov > 0;
 })
@@ -134,6 +168,7 @@ const balance = movements.reduce(function(acc, curr, i, arr){
 */
 //console.log(balance);
 
+/*
 const max = movements.reduce(function(acc, mov){
   if(acc > mov){
     return acc;
@@ -142,6 +177,8 @@ const max = movements.reduce(function(acc, mov){
   }
 }, movements[0]);
 //console.log(max);
+
+
 
 let testData1 = [5,2,4,1,15,8,3];
 let testData2 = [16,6,10,5,6,1,4];
@@ -167,3 +204,20 @@ const calcAverageHumanAge = function(ages){
 }
 calcAverageHumanAge(testData1);
 calcAverageHumanAge(testData2);
+*/
+
+/*
+const eurToUsd = 1.1;
+const usdMovements = movements
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .map(function (mov) {
+    return mov * eurToUsd;
+  })
+  .reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+
+console.log(usdMovements);
+*/
