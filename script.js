@@ -90,11 +90,12 @@ const displayMovements = function (movements) {
 //displayMovements(account1.movements);
 
 // Showing Balance of the account owner
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce(function (acc, curr) {
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce(function (acc, curr) {
     return acc + curr;
   }, 0);
-  labelBalance.textContent = `${balance} €`;
+  
+  labelBalance.textContent = `${acc.balance} €`;
 };
 //calcDisplayBalance(account1.movements);
 
@@ -148,6 +149,16 @@ const createUsername = function (accounts) {
 };
 createUsername(accounts);
 
+
+const updateInterface = function(acc){
+  // Display movements
+  displayMovements(acc.movements);
+  // Display balance
+  calcDisplayBalance(acc);
+  // Display summary
+  calDisplaySummary(acc);
+}
+
 // Event handler for login
 let currentAccount;
 btnLogin.addEventListener("click", function (e) {
@@ -165,14 +176,28 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginUsername.value = "";
     inputLoginPin.value = "";
     inputLoginPin.blur();
-    // Display movements
-    displayMovements(currentAccount.movements);
-    // Display balance
-    calcDisplayBalance(currentAccount.movements);
-    // Display summary
-    calDisplaySummary(currentAccount);
+    
+    updateInterface(currentAccount);
   }
 });
+
+// Transfer Money
+btnTransfer.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => acc.username === inputTransferTo.value);
+  //console.log(receiverAcc, amount);
+  inputTransferAmount = inputTransferTo = '';
+
+  if(amount > 0 && currentAccount.balance >= amount && receiverAcc && receiverAcc?.username !== currentAccount.username){
+    //Transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    updateInterface(currentAccount);
+  }
+});
+
+
 /*
 const deposit = movements.filter(function(mov){
   return mov > 0;
