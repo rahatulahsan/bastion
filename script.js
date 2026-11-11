@@ -166,7 +166,7 @@ btnLogin.addEventListener("click", function (e) {
   currentAccount = accounts.find(
     (acc) => acc.username === inputLoginUsername.value,
   );
-  console.log(currentAccount);
+  //console.log(currentAccount);
   if (currentAccount && currentAccount.pin === Number(inputLoginPin.value)) {
     // Diplay UI and message
     labelWelcome.textContent = `Welcome Back ${currentAccount.owner.split(" ")[0]}`;
@@ -195,6 +195,19 @@ btnTransfer.addEventListener('click', function(e){
     receiverAcc.movements.push(amount);
     updateInterface(currentAccount);
   }
+});
+
+// Request Loan
+btnLoan.addEventListener('click', function(e){
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if(amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)){
+    // Add Loan
+    currentAccount.movements.push(amount);
+    // Update Interface
+    updateInterface(currentAccount);
+  }
+  inputLoanAmount.value = '';
 });
 
 // Close Account
@@ -296,3 +309,33 @@ console.log(accounts);
 const account = accounts.find((acc) => acc.owner === "Rahatul Ahsan");
 console.log(account);
 */
+
+const lastwithDrawal = movements.findLast(mov => mov <0);
+const lastwithDrawalIndex = movements.findLastIndex(mov => mov <0);
+console.log(movements);
+console.log(lastwithDrawal);
+console.log(lastwithDrawalIndex);
+
+// For Equality Check
+console.log(movements.includes(-130));
+
+// Some: For Condition Check (Returns true if any condition is true)
+const anydeposit = movements.some(mov => mov > 5000);
+console.log(anydeposit);
+
+// Every: For Condition Check (Returns true if every condition is true)
+console.log(movements.every(mov => mov > 0)); // false
+console.log(account4.movements.every(mov => mov > 0)); // true
+
+/*
+console.log(accounts);
+const arrayMovements = accounts.map(acc => acc.movements);
+console.log(arrayMovements);
+const allArrayMovements = arrayMovements.flat();
+console.log(allArrayMovements);
+*/
+
+const finalBalance = accounts.map(acc => acc.movements).flat().reduce((acc,mov) => acc + mov, 0);
+console.log(finalBalance);
+const finalBalance1 = accounts.flatMap(acc => acc.movements).reduce((acc,mov) => acc + mov, 0);
+console.log(finalBalance1);
