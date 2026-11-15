@@ -65,12 +65,12 @@ flowchart LR
 
 Usernames are the owner's initials in lowercase.
 
-| Owner            | Username | PIN  |
-| ---------------- | -------- | ---- |
-| Rahatul Ahsan    | `ra`     | 1111 |
-| Jannatul Ferdous | `jf`     | 2222 |
-| Salimullah Khan  | `stw`    | 3333 |
-| Rounok Bhashkor  | `ss`     | 4444 |
+| Owner                | Username | PIN  |
+| -------------------- | -------- | ---- |
+| Rahatul Ahsan        | `ra`     | 1111 |
+| Jannatul Ferdous Mim | `jfm`    | 2222 |
+| Salimullah Khan      | `sk`     | 3333 |
+| Rounok Bhashkor      | `rb`     | 4444 |
 
 ## Tech stack
 
