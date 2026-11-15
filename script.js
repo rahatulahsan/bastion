@@ -76,9 +76,7 @@ const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 const displayMovements = function (movements, sort = false) {
   containerMovements.innerHTML = "";
-
-  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
-  movs.forEach(function (mov, i) {
+  movements.forEach(function (mov, i) {
     const type = mov > 0 ? "deposit" : "withdrawal";
     const html = `<div class="movements__row">
             <div class="movements__type movements__type--${type}">${i + 1} ${type}</div>
@@ -241,11 +239,122 @@ btnClose.addEventListener("click", function (e) {
   inputCloseUsername = inputClosePin = "";
 });
 
-// Sorting movements
-let sorted = false;
-btnSort.addEventListener("click", function (e) {
-  e.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
-  sorted = !sorted;
-  console.log(sorted);
+/*
+const deposit = movements.filter(function(mov){
+  return mov > 0;
+})
+const withdrawals = movements.filter(function(mov){
+  return mov < 0;
+})
+//console.log(deposit);
+//console.log(withdrawals);
+//console.log(movements);
+
+/*
+const balance = movements.reduce(function(acc, curr, i, arr){
+  console.log(`Iteration ${i} : ${acc}`);
+  return acc + curr;
+}, 0);
+*/
+//console.log(balance);
+
+/*
+const max = movements.reduce(function(acc, mov){
+  if(acc > mov){
+    return acc;
+  }else{
+    return mov;
+  }
+}, movements[0]);
+//console.log(max);
+
+
+
+let testData1 = [5,2,4,1,15,8,3];
+let testData2 = [16,6,10,5,6,1,4];
+
+const calcAverageHumanAge = function(ages){
+  
+  const humanYears = ages.map(function(age){
+    if(age <= 2){
+      return age*2;
+    }else{
+      return 16 + (age*4);
+    }
+  }).filter(function(curr, i){
+    return curr>=18;
+  })
+  const average = humanYears.reduce(function(acc ,curr, i, arr){
+    return acc+curr / arr.length;
+  },0);
+  
+  console.log(humanYears);
+  console.log(average);
+
+}
+calcAverageHumanAge(testData1);
+calcAverageHumanAge(testData2);
+*/
+
+/*
+const eurToUsd = 1.1;
+const usdMovements = movements
+  .filter(function (mov) {
+    return mov > 0;
+  })
+  .map(function (mov) {
+    return mov * eurToUsd;
+  })
+  .reduce(function (acc, mov) {
+    return acc + mov;
+  }, 0);
+
+console.log(usdMovements);
+*/
+
+/*
+const firstWithdrawl = movements.find(function (mov) {
+  return mov < 0;
 });
+console.log(movements);
+console.log(firstWithdrawl);
+
+console.log(accounts);
+const account = accounts.find((acc) => acc.owner === "Rahatul Ahsan");
+console.log(account);
+*/
+
+const lastwithDrawal = movements.findLast((mov) => mov < 0);
+const lastwithDrawalIndex = movements.findLastIndex((mov) => mov < 0);
+console.log(movements);
+console.log(lastwithDrawal);
+console.log(lastwithDrawalIndex);
+
+// For Equality Check
+console.log(movements.includes(-130));
+
+// Some: For Condition Check (Returns true if any condition is true)
+const anydeposit = movements.some((mov) => mov > 5000);
+console.log(anydeposit);
+
+// Every: For Condition Check (Returns true if every condition is true)
+console.log(movements.every((mov) => mov > 0)); // false
+console.log(account4.movements.every((mov) => mov > 0)); // true
+
+/*
+console.log(accounts);
+const arrayMovements = accounts.map(acc => acc.movements);
+console.log(arrayMovements);
+const allArrayMovements = arrayMovements.flat();
+console.log(allArrayMovements);
+*/
+
+const finalBalance = accounts
+  .map((acc) => acc.movements)
+  .flat()
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(finalBalance);
+const finalBalance1 = accounts
+  .flatMap((acc) => acc.movements)
+  .reduce((acc, mov) => acc + mov, 0);
+console.log(finalBalance1);
