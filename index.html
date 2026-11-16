@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -105,7 +105,9 @@
 
         <div class="movements">
           <div class="movements__row">
-            <div class="movements__type movements__type--deposit">2 deposit</div>
+            <div class="movements__type movements__type--deposit">
+              2 deposit
+            </div>
             <div class="movements__date">3 days ago</div>
             <div class="movements__value">4 000€</div>
           </div>
@@ -137,13 +139,23 @@
           <form class="form form--transfer">
             <label class="form__field">
               <span class="form__label">Transfer to</span>
-              <input type="text" placeholder="e.g. js" class="form__input form__input--to" />
+              <input
+                type="text"
+                placeholder="e.g. js"
+                class="form__input form__input--to"
+              />
             </label>
             <label class="form__field">
               <span class="form__label">Amount</span>
-              <input type="number" placeholder="0" class="form__input form__input--amount" />
+              <input
+                type="number"
+                placeholder="0"
+                class="form__input form__input--amount"
+              />
             </label>
-            <button class="form__btn form__btn--transfer" aria-label="Transfer">&rarr;</button>
+            <button class="form__btn form__btn--transfer" aria-label="Transfer">
+              &rarr;
+            </button>
           </form>
         </div>
 
@@ -158,15 +170,23 @@
             </span>
             <div>
               <h2>Request loan</h2>
-              <p class="operation__hint">Needs a deposit of at least 10% of the amount</p>
+              <p class="operation__hint">
+                Needs a deposit of at least 10% of the amount
+              </p>
             </div>
           </div>
           <form class="form form--loan">
             <label class="form__field">
               <span class="form__label form__label--loan">Amount</span>
-              <input type="number" placeholder="0" class="form__input form__input--loan-amount" />
+              <input
+                type="number"
+                placeholder="0"
+                class="form__input form__input--loan-amount"
+              />
             </label>
-            <button class="form__btn form__btn--loan" aria-label="Request loan">&rarr;</button>
+            <button class="form__btn form__btn--loan" aria-label="Request loan">
+              &rarr;
+            </button>
           </form>
         </div>
 
@@ -181,7 +201,9 @@
             </span>
             <div>
               <h2>Close account</h2>
-              <p class="operation__hint">This permanently removes your account</p>
+              <p class="operation__hint">
+                This permanently removes your account
+              </p>
             </div>
           </div>
           <form class="form form--close">
@@ -191,9 +213,18 @@
             </label>
             <label class="form__field">
               <span class="form__label">Confirm PIN</span>
-              <input type="password" maxlength="6" class="form__input form__input--pin" />
+              <input
+                type="password"
+                maxlength="6"
+                class="form__input form__input--pin"
+              />
             </label>
-            <button class="form__btn form__btn--close" aria-label="Close account">&rarr;</button>
+            <button
+              class="form__btn form__btn--close"
+              aria-label="Close account"
+            >
+              &rarr;
+            </button>
           </form>
         </div>
       </div>
@@ -204,5 +235,6 @@
     </footer> -->
 
     <script src="script.js"></script>
+    <script src="demo.js"></script>
   </body>
 </html>

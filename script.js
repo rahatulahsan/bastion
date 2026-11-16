@@ -215,6 +215,30 @@ const updateInterface = function (acc) {
   calDisplaySummary(acc);
 };
 
+const setLogOutTimer = function () {
+  const tick = function () {
+    let min = String(Math.trunc(time / 60)).padStart(2, 0);
+    let sec = String(time % 60).padStart(2, 0);
+    // in each call, print the timer in UI
+    labelTimer.textContent = `${min}:${sec}`;
+
+    // When 0 secs, stop timer and log out user
+    if (time === 0) {
+      console.log("hello");
+      clearInterval(timer);
+      labelWelcome.textContent = "Log in to get started";
+      containerApp.style.opacity = 0;
+    }
+
+    time--;
+  };
+  //set time to 5 mins
+  let time = 5;
+  // call the timer every second
+  tick();
+  let timer = setInterval(tick, 1000);
+};
+
 // Event handler for login
 let currentAccount;
 
@@ -241,6 +265,7 @@ btnLogin.addEventListener("click", function (e) {
     inputLoginPin.value = "";
     inputLoginPin.blur();
 
+    setLogOutTimer();
     updateInterface(currentAccount);
   }
 });
@@ -283,10 +308,14 @@ btnLoan.addEventListener("click", function (e) {
     amount > 0 &&
     currentAccount.movements.some((mov) => mov >= amount * 0.1)
   ) {
-    // Add Loan
-    currentAccount.movements.push(amount);
-    // Update Interface
-    updateInterface(currentAccount);
+    setTimeout(function () {
+      // Add Loan
+      currentAccount.movements.push(amount);
+      // Add Loan Date
+      currentAccount.movementsDates.push(new Date().toISOString());
+      // Update Interface
+      updateInterface(currentAccount);
+    }, 3000);
   }
   inputLoanAmount.value = "";
 });
